@@ -46,4 +46,23 @@ jobs: # job to execute?
         go mod init calc #can use go build and delete line 32-34 if mod and sum file is added.
         go mod tidy
         go get github.com/franela/goblin
+        go get github.com/tebeka/go2xunit
         go test -v
+        go test -v | go2xunit -output tests.xml
+        
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1
+      if: always() #if checks on previous action block, always means no matter pass or fail it will continue
+      with:
+        files: tests.xml
+        
+    - if: ${{ failure() }}
+      uses: nashmaniac/create-issue-action@v1.1
+      name: Create Issue Action
+      with:
+        title: Build Failed
+        token: ${{secrets.GITHUB_TOKEN}} #My own repo so called id
+        assignees: ${{github.actor}} #Whoever is pushing or pulling or triggering this yaml
+        labels: worflow-failed
+        body: Workflow failed for commit ${{github.sha}}
+      
