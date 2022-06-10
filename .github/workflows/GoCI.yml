@@ -28,6 +28,8 @@ jobs: # job to execute?
       run: ls
       
     - name: Install Dependencies
-      run:
+      run: |
+        go mod init calc #can use go build and delete line 32-34 if mod and sum file is added.
+        go mod tidy
         go get github.com/franela/goblin
         go test -v
