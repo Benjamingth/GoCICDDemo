@@ -46,7 +46,7 @@ jobs: # job to execute?
         go mod init calc #can use go build and delete line 32-34 if mod and sum file is added.
         go mod tidy
         go get github.com/franela/goblin
-        go get github.com/tebeka/go2xunit
+        go install github.com/tebeka/go2xunit
         go test -v
         go test -v | go2xunit -output tests.xml
         
