@@ -64,8 +64,8 @@ jobs: # job to execute?
         labels: worflow-failed
         body: Workflow failed for commit ${{github.sha}}
         
-    - name: whatsapp-notify
-      uses: ishween/whatsapp-push-notify-action@master
+    - name: Push notification on Whatsapp
+      uses: ishween/whatsapp-push-notify-action@1.2
       id: whatsapp-notify
       env:
         account_sid: ${{ secrets.ACC_SID }}
