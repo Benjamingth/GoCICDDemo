@@ -63,4 +63,12 @@ jobs: # job to execute?
         assignees: ${{github.actor}} #Whoever is pushing or pulling or triggering this yaml
         labels: worflow-failed
         body: Workflow failed for commit ${{github.sha}}
+        
+    - name: whatsapp-notify
+      uses: ishween/whatsapp-push-notify-action@master
+      id: whatsapp-notify
+      env:
+        account_sid: ${{ secrets.ACC_SID }}
+        auth_token: ${{ secrets.AUTH_TOKEN }}
+        to_whatsapp_no: ${{ secrets.TO_WHATSAPP_NO }}
       
