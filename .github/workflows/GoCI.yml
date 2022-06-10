@@ -43,8 +43,6 @@ jobs: # job to execute?
       
     - name: Install Dependencies
       run: |
-        go mod init calc #can use go build and delete line 32-34 if mod and sum file is added.
-        go mod tidy
         go get github.com/franela/goblin
         go install github.com/tebeka/go2xunit@latest
         go test -v
